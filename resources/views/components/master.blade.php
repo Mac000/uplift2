@@ -29,5 +29,9 @@
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-    })
+    });
+    // Putting this script here to be available globally for closing of alert.
+    function hideAlert() {
+        document.getElementById("alert").classList.add("d-none");
+    }
 </script>

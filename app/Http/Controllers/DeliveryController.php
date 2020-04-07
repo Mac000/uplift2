@@ -20,14 +20,7 @@ class DeliveryController extends Controller
             $q->select('name', 'id');
         }])->paginate(5);
 
-        if ($deliveries->isNotEmpty()) {
-
-            return view('pages.dashboard.deliveries')->with('deliveries', [$deliveries]);
-        }
-        else {
-            session(['response' => 0]);
-            return view('pages.dashboard.deliveries')->with('deliveries', 0);
-        }
+        return view('pages.dashboard.deliveries')->with('deliveries', [$deliveries]);
     }
     public function store(Request $request) {
 

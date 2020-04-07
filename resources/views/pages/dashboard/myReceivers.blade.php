@@ -3,10 +3,23 @@
 
 <div class="row cs-flex-auto ml-2">
     <h4 class="card-header w-100">My Receivers</h4>
-    @foreach($receivers as $receiver)
+{{--    @foreach($receivers as $receiver)--}}
+{{--        <div class="cs-w-48 ml-2 mt-2 p-1">--}}
+{{--            <a class=""--}}
+{{--               href="{{ route('receiverData', ['receiver' => $receiver->receiver]) }}">{{ $receiver->receiver }}</a>--}}
+{{--        </div>--}}
+{{--    @endforeach--}}
+
+    @forelse($receivers as $receiver)
         <div class="cs-w-48 ml-2 mt-2 p-1">
             <a class=""
                href="{{ route('receiverData', ['receiver' => $receiver->receiver]) }}">{{ $receiver->receiver }}</a>
         </div>
-    @endforeach
+        @empty
+        @component('components.bulma_warn')
+            @slot('message')
+                You do not have any receivers at the moment.
+            @endslot
+        @endcomponent
+    @endforelse
 </div>

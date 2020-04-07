@@ -19,12 +19,11 @@
                 <th>Evidence</th>
             </tr>
             </thead>
-
-            @foreach($deliveries as $collection)
+        @foreach($deliveries as $collection)
             <!--    Its a collection returned by backend, so you have to loop to the internal array which contains
                 attributes/values
             -->
-                @foreach($collection as $delivery)
+                @forelse($collection as $delivery)
                     <tr>
                         <td>
                             <a href="{{ route('receiverData', ['receiver' => $delivery->receiver]) }}">{{ $delivery->receiver }}</a>
@@ -39,7 +38,13 @@
                         <td>{{ $delivery->user->name }}</td>
                         <td><a href="{{ $delivery->image }}">View</a></td>
                     </tr>
-                @endforeach
+                @empty
+                    @component('components.bulma_warn')
+                        @slot('message')
+                            No deliveries exist far yet.
+                        @endslot
+                    @endcomponent
+                @endforelse
             @endforeach
         </table>
     </div>
