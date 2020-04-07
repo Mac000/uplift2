@@ -2,7 +2,7 @@
 
 @include('components.dashboard.bulma_nav')
 
-<h3 class="card-header mb-2">Individual Deliveries</h3>
+<h3 id="cardHeader" class="card-header mb-2">Individual Deliveries</h3>
 <div class="row">
     <div class="col pl-1 pr-1">
         <form class="mb-1" onsubmit="search()">
@@ -49,6 +49,15 @@
                 table_container.classList.remove("d-none");
                 var insertAfterMe = document.getElementById("insertAfterMe");
 
+                if (!Array.isArray(data) || !data.length) {
+                    let card_header = document.getElementById("cardHeader");
+
+                    card_header.insertAdjacentHTML("beforebegin",
+                        "<div id=\"alert\" class=\"notification is-warning cs-alert\">" +
+                        "<button class=\"delete\" onclick=\"hideAlert()\"></button>" +
+                        "<span>Record Not found</span>" +
+                        "</div>");
+                }
                 for (receiver of data) {
                     var tr = document.createElement("tr");
                     // If this doesnt default it to 0 on new iteration then simply set the value to 0 at the end of loop
@@ -76,6 +85,7 @@
                         if (custom_index === 11) {
                             let td = document.createElement("td");
                             let a = document.createElement("a");
+                            // Change href for production environment
                             a.href = "http://127.0.0.1:8000/" + receiver.image;
                             a.innerHTML = "View";
                             td.appendChild(a);
@@ -94,11 +104,11 @@
                 // console.log(table_height);
             }
             else {
-                // nav.style.height = 1000;
                 nav.style.height = "140vh";
             }
-
         })
     }
-
+    function hideAlert() {
+        document.getElementById("alert").classList.add("d-none");
+    }
 </script>

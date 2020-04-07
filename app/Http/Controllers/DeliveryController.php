@@ -13,13 +13,21 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DeliveryController extends Controller
 {
-    public function index() {
+    public function viewDeliveries() {
         /* Select only user name from relationship, its compulsory to select the foreign key */
         $deliveries = Delivery::with(['user' => function($q)
         {
             $q->select('name', 'id');
         }])->paginate(5);
-        return view('pages.dashboard.deliveries')->with('deliveries', [$deliveries]);
+
+        if ($deliveries->isNotEmpty()) {
+
+            return view('pages.dashboard.deliveries')->with('deliveries', [$deliveries]);
+        }
+        else {
+            session(['response' => 0]);
+            return view('pages.dashboard.deliveries')->with('deliveries', 0);
+        }
     }
     public function store(Request $request) {
 

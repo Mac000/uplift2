@@ -22,7 +22,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('/register-delivery', 'pages.dashboard.registerDelivery');
     Route::post('/register-delivery', 'DeliveryController@store');
 //    It should be dashboard/view-delivery for Delivery routes
-    Route::get('/view-deliveries', 'DeliveryController@index');
+    Route::get('/view-deliveries', 'DeliveryController@viewDeliveries');
     Route::get('/view-deliveries/{receiver}', 'DeliveryController@viewReceiverData')->name('receiverData');
 
 //  dashboard route

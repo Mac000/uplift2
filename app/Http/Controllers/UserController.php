@@ -17,6 +17,7 @@ class UserController extends Controller
 {
     public function myReceivers() {
         $receivers = Delivery::distinct()->select('receiver')->where('user_id', Auth::id())->get();
+//        Need handling of no record retrieved from DB
         return view('pages.dashboard.myReceivers')->with('receivers', $receivers);
     }
 

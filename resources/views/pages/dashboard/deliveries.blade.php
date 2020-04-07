@@ -1,8 +1,6 @@
 @extends('components.master')
-{{--@include('components.header')--}}
-
-{{--@component('components.bulma_nav')--}}
 @include('components.dashboard.bulma_nav')
+
 <div class="row cs-row-mr-0">
     <h3 class="card-header w-100 mb-2">All Deliveries</h3>
     <div class="table-responsive-lg ml-1">
@@ -21,8 +19,11 @@
                 <th>Evidence</th>
             </tr>
             </thead>
+
             @foreach($deliveries as $collection)
-                {{-- Its a collection returned by backend, so you have to loop to the internal array which contains attributes/values --}}
+            <!--    Its a collection returned by backend, so you have to loop to the internal array which contains
+                attributes/values
+            -->
                 @foreach($collection as $delivery)
                     <tr>
                         <td>
