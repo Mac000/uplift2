@@ -15,8 +15,8 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                                       value="{{ old('name') }}" required autocomplete="name" autofocus maxlength="50">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -29,7 +29,8 @@
                             <label for="phone_no" class="col-md-4 col-form-label text-md-right">Mobile Number</label>
 
                             <div class="col-md-6">
-                                <input id="phone_no" type="text" class="form-control" name="phone_no" required autocomplete="phone_no" autofocus>
+                                <input id="phone_no" type="text" class="form-control" name="phone_no" required autocomplete="phone_no"
+                                       maxlength="11" placeholder="xxxxxxxxxxx" autofocus>
                             </div>
                         </div>
 
@@ -37,7 +38,8 @@
                             <label for="tehsil" class="col-md-4 col-form-label text-md-right">Tehsil</label>
 
                             <div class="col-md-6">
-                                <input id="tehsil" type="text" class="form-control" name="tehsil" required autocomplete="tehsil" autofocus>
+                                <input id="tehsil" type="text" class="form-control" name="tehsil" required autocomplete="tehsil"
+                                       maxlength="40" placeholder="Your Tehsil" autofocus>
                             </div>
                         </div>
 
@@ -45,7 +47,8 @@
                             <label for="cnic" class="col-md-4 col-form-label text-md-right">CNIC</label>
 
                             <div class="col-md-6">
-                                <input id="cnic" type="text" class="form-control" name="cnic" required autocomplete="cnic" autofocus>
+                                <input id="cnic" type="text" class="form-control" name="cnic" required autocomplete="cnic"
+                                       maxlength="13" placeholder="13 digits without dashes" autofocus>
                             </div>
                         </div>
 
@@ -67,7 +70,8 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required
+                                       min="8" placeholder="min: 8 characters" autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -81,7 +85,8 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
+                                       min="8" autocomplete="new-password">
                             </div>
                         </div>
 

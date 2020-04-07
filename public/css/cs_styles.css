@@ -390,10 +390,25 @@ hr {
     float: left;
     height: 115vh;
 }
-@media screen and (max-width: 1200px) and (min-width: 250px) {
+@media screen and (max-width: 1200px) and (min-width: 770px) {
     .nav-row{
-        height: 140vh;
+        height: 120vh;
     }
+}
+@media screen and (max-width: 769px) and (min-width: 250px) {
+    .nav-row{
+        height: 200vh;
+    }
+}
+@media screen and (max-width: 249px) {
+    .nav-row{
+        height: 230vh;
+    }
+}
+.cs-required {
+    color: orangered;
+    font-weight: 700;
+    font-size: 1rem;
 }
 .cs-nav-link {
     background-color: #343A40;

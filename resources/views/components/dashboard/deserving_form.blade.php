@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <form method="post" action="/register-delivery" class="was-validated cs-sign-up ml-4" enctype="multipart/form-data">
+    <form method="post" action="/register-delivery" class="was-validated cs-sign-up ml-1 ml-md-4" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center">
             <div class="col-sm">
@@ -10,7 +10,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-sm ml-4 mr-4 ">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <i class="cs-i-w-same input-group-text fa fa-drivers-license-o"></i>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-sm ml-4 mr-4 ">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <i class="cs-i-w-same input-group-text fa fa-drivers-license-o"></i>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-sm ml-4 mr-4 ">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <i class="cs-i-w-same input-group-text fa fa-drivers-license-o"></i>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-sm ml-4 mr-4">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <i class="cs-i-w-same input-group-text fa fa-envelope"></i>
@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-sm ml-4 mr-4">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <i class="cs-i-w-same input-group-text fa fa-mobile-phone"></i>
@@ -80,7 +80,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-sm ml-4 mr-4">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <i class="cs-i-w-same input-group-text fa fa-lock"></i>
@@ -93,7 +93,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-sm ml-4 mr-4">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <i class="cs-i-w-same input-group-text fa fa-envelope"></i>
@@ -108,7 +108,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-sm ml-4 mr-4">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <i class="cs-i-w-same input-group-text fa fa-lock"></i>
@@ -122,14 +122,14 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-sm ml-4 mr-4">
-                <label class="mr-2" for="evidence">Image for evidence (max size: 1MB, allowed:jpeg,png) </label>
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
+                <label class="mr-2" for="evidence">Evidence<span class="cs-required">*</span> (max size: 1MB, allowed:jpeg,png) </label>
                 <input id="evidence" type="file" name="evidence" required>
             </div>
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-sm ml-4 mr-4">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <button type="submit" class="cs-brand-btn mb-2 w-100 temp-bg">Register</button>
             </div>
         </div>

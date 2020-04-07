@@ -89,8 +89,15 @@
             //    This to change navigation height to compensate for lack of pagination
             let table_height = document.getElementById("table").clientHeight + 150;
             let nav = document.getElementById("navContainer");
-            nav.style.height = table_height;
-            console.log(table_height);
+            if (table_height > 1000 ) {
+                nav.style.height = table_height;
+                // console.log(table_height);
+            }
+            else {
+                // nav.style.height = 1000;
+                nav.style.height = "140vh";
+            }
+
         })
     }
 
