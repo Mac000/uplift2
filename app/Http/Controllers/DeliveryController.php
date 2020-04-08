@@ -58,7 +58,6 @@ class DeliveryController extends Controller
             /*
              * Exploding an array until we get the file name ONLY
              */
-
             $last_file_number = explode("/", $last_file_number->image);
 
             // Splitting into array and grabbing the file name
@@ -74,6 +73,7 @@ class DeliveryController extends Controller
             // Incrementing file number to be used for new file upload
             $last_file_number = end($last_file_number) +1;
         }
+
         $file_name = $user_id.'_'.$today.'_'.$last_file_number.'.'.$extension;
         $uploaded = $request->file('evidence')->storeAs('/public', $file_name);
         $asset_path = 'storage/'.$file_name;

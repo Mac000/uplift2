@@ -34,4 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('/dashboard/settings', 'pages.dashboard.settings');
     Route::post('/dashboard/settings/update_phone', 'UserController@updatePhone');
     Route::post('/dashboard/settings/update_password', 'UserController@updatePassword');
+
+    Route::view('/dashboard/post-item', 'pages.dashboard.items');
+    Route::post('/dashboard/post-item', 'GeneralController@postItem');
+    Route::get('/dashboard/get-item', 'GeneralController@getItem');
 });
