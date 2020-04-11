@@ -1,10 +1,10 @@
 <div class="row justify-content-center">
-    <form method="post" action="/dashboard/register-delivery-new" class="was-validated cs-sign-up ml-1 ml-md-4"
+    <form method="post" action="/dashboard/register-delivery-existing" class="was-validated cs-sign-up ml-1 ml-md-4"
           enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center">
             <div class="col-sm">
-                <h3 class="cs-auth-header text-center text-white m-2 p-2 temp-bg">Deliver to New Person</h3>
+                <h3 class="cs-auth-header text-center text-white m-2 p-2 temp-bg">Deliver to existing Person</h3>
                 <p class="text-center">Please register details of delivery</p>
                 <hr class="m-2">
             </div>
@@ -21,43 +21,8 @@
 
         <div class="form-group row justify-content-center">
             <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
-                <input type="text" class="form-control" id="tehsil" placeholder="Receiver Tehsil" name="tehsil"
-                       required>
-                <div class="valid-feedback">Valid.</div>
-                <div class="invalid-feedback">Please fill out this field.</div>
-            </div>
-        </div>
-
-        <div class="form-group row justify-content-center">
-            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
-                <input type="text" class="form-control" id="cnic" placeholder="Receiver CNIC, Do not use dashes!"
-                       name="cnic" required maxlength="13">
-                <div class="valid-feedback">Valid.</div>
-                <div class="invalid-feedback">Please fill out this field.</div>
-            </div>
-        </div>
-
-        <div class="form-group row justify-content-center">
-            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
-                    <textarea class="form-control" id="address" placeholder="Full Address" name="address"
-                              required></textarea>
-                <div class="valid-feedback">Valid.</div>
-                <div class="invalid-feedback">Please fill out this field.</div>
-            </div>
-        </div>
-
-        <div class="form-group row justify-content-center">
-            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <input type="text" class="form-control" id="phone_no" placeholder="Phone Number, format: XXXXXXXXXXX"
                        name="phone_no" required maxlength="11">
-                <div class="valid-feedback">Valid.</div>
-                <div class="invalid-feedback">Please fill out this field.</div>
-            </div>
-        </div>
-
-        <div class="form-group row justify-content-center">
-            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
-                <input type="text" class="form-control" id="gps" placeholder="GPS coordinates" name="gps" required>
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
             </div>
@@ -92,8 +57,7 @@
 
         <div class="form-group row justify-content-center">
             <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
-                <input type="number" class="form-control" id="cost" placeholder="Total cost of goods" name="cost"
-                       required max="15000">
+                <input type="number" class="form-control" id="cost" placeholder="Total cost of goods" name="cost" required max="15000">
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
             </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Delivery;
 use App\Models\Item;
+use App\Models\Receiver;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,8 +14,8 @@ class GeneralController extends Controller
 {
     public function homepage() {
 
-        $people = Delivery::distinct()->count('receiver');
-        $people_15 = Delivery::where('created_at', '<=', Carbon::now()->subDays(15))->distinct()->count();
+        $people = Delivery::distinct()->count('receiver_id');
+        $people_15 = Delivery::where('created_at', '<=', Carbon::now()->subDays(15))->distinct()->count('receiver_id');
 
         $cost = Delivery::sum('cost');
         $cost_15 = Delivery::where('created_at', '<=', Carbon::now()->subDays(15))->sum('cost');
@@ -27,15 +29,66 @@ class GeneralController extends Controller
     }
     public function individualData(Request $request) {
         $name = $request['name'];
-
-        $data = Delivery::with(['user' => function($q)
-        {
-            $q->select('name', 'id');
-        }])->where('receiver', $name)->get();
-        $created = (bool)$data;
-        abort_unless($created, 500, "Failed to fetch Record");
+        $ids_collection = Receiver::select('id')->where('name', $name)->get();
+        /*
+         * Getting receiver if to use in below query to fetch all the deliveries of receiver.
+         */
+        foreach ($ids_collection as $ids) {
+            $data = Delivery::with(['user' => function($q)
+            {
+                $q->select('name', 'id');
+            }])->with(['receiver' => function ($query) {
+                $query->select('id', 'needs', 'name', 'phone_no', 'address', 'gps', 'tehsil');
+            }])->where('receiver_id', $ids->id)->get();
+        }
+//        Consider removing this check, since if its returned empty, front-end will display not found alert
+//        $created = (bool)$data;
+//        abort_unless($created, 500, "Failed to fetch Record");
         return $data;
     }
+
+    public function allStats() {
+
+        $users = User::select('id', 'name', 'tehsil')->paginate(10);
+//        $users_stats = collect();
+        $stats = collect();
+        $array = [];
+        foreach ($users as $user) {
+            /*
+             * Ok, Here's deal, Create a collection of these 4 attributes.
+             * Put that collection of 4 attributes into one main collection which should be returned to backend
+             * Now, For every user, there will be one key in stats collection which will correspond to the inner collection of stats
+             *
+             */
+
+            $users_stats = collect();
+            $people = Delivery::distinct()->where('user_id', $user->id)->count('receiver_id');
+            $users_stats->push($people);
+
+            $people_15 = Delivery::where('created_at', '<=', Carbon::now()->subDays(15))->where('user_id', $user->id)
+                ->distinct()->count('receiver_id');
+            $users_stats->push($people_15);
+
+            $cost = Delivery::where('user_id', $user->id)->sum('cost');
+            $users_stats->push($cost);
+
+            $cost_15 = Delivery::where('created_at', '<=', Carbon::now()->subDays(15))->where('user_id', $user->id)->sum('cost');
+            $users_stats->push($cost_15);
+            $stats->push($users_stats);
+        }
+//        dd($stats);
+            return view('pages.all_stats', [
+                'users' => $users,
+                'users_stats' => $stats,
+//                'users_stats' => $users_stats,
+//                'people' => $people,
+//                'cost' => $cost,
+//                'people_15' => $people_15,
+//                'cost_15' => $cost_15,
+            ]);
+    }
+
+
 
     public function postItem(Request $request) {
         $data = $request->validate([
@@ -54,7 +107,6 @@ class GeneralController extends Controller
         return redirect()->back();
     }
 
-
     public function getItem() {
         /*
          * Query the data from DB
@@ -72,12 +124,25 @@ class GeneralController extends Controller
 
 //        Side note: Try using Regex to fix some of idiot user cases like the on in find(2)
 //        $items = Item::first();
-        $items = Item::find(2);
+//        $items = Item::find(2);
+        $items_collection = Receiver::with('deliveries')->where([
+            'help'=> false, 'checked' => false,
+        ])->get();
+
+        if (!$items_collection->isEmpty()) {
+            foreach ($items_collection as $items) {
+                foreach ($items->deliveries as $delivery)
+                dd($delivery->id);
+            }
+        }
+
+        $items = Delivery::first();
         $days = $items->days;
         $members = $items->members;
-        $items_json = $items->itemsjson;
+//        $items_json = $items->itemsjson;
+        $items_json = $items->goods;
         $items_json_array = explode(",", $items_json);
-        dd($items_json_array);
+//        dd($items_json_array);
         $items_json_array = explode(" ", $items_json);
 //        dd($days);
 //        dd($members);
@@ -100,12 +165,12 @@ class GeneralController extends Controller
 //        dd($combined);
 
         $essentials = collect([
-            'flour' => '10kg',
+            'flour' => '1kg',
             'oil' => '1ltr',
-            'chicken' => '2kg',
-            'sugar' => '5kg',
+            'chicken' => '1kg',
+            'sugar' => '1kg',
             'ghee' => '1kg',
-            'rice' => '2kg',
+            'rice' => '1kg',
         ]);
         $units = collect([
             'flour' => 'Kg',

@@ -11,21 +11,25 @@
 |
 */
 
+
 Route::get('/', 'GeneralController@homepage');
 Route::view('/about', 'pages.about');
 Route::view('/how-to-use', 'pages.how_to_use');
+Route::get('/all-stats', 'GeneralController@allStats');
 
 Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'verified'])->group(function () {
 //    It should be dashboard/register-delivery for Delivery routes
-    Route::view('/register-delivery', 'pages.dashboard.registerDelivery');
-    Route::post('/register-delivery', 'DeliveryController@store');
-//    It should be dashboard/view-delivery for Delivery routes
-    Route::get('/view-deliveries', 'DeliveryController@viewDeliveries');
-    Route::get('/view-deliveries/{receiver}', 'DeliveryController@viewReceiverData')->name('receiverData');
+    Route::view('dashboard/register-delivery-new', 'pages.dashboard.register_delivery_new');
+    Route::post('dashboard/register-delivery-new', 'DeliveryController@newDelivery');
 
-//  dashboard route
+    Route::view('dashboard/register-delivery-existing', 'pages.dashboard.register_delivery_existing');
+    Route::post('dashboard/register-delivery-existing', 'DeliveryController@existingDelivery');
+
+    Route::get('/view-deliveries', 'DeliveryController@viewDeliveries');
+    Route::get('/view-deliveries/{receiver}', 'ReceiverController@viewReceiverData')->name('receiverData');
+
     Route::get('/dashboard', 'UserController@dashboard');
     Route::view('/dashboard/view-individual-deliveries', 'pages.dashboard.individualDeliveries');
     Route::post('/dashboard/view-individual-deliveries', 'GeneralController@individualData');
@@ -35,7 +39,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/settings/update_phone', 'UserController@updatePhone');
     Route::post('/dashboard/settings/update_password', 'UserController@updatePassword');
 
-    Route::view('/dashboard/post-item', 'pages.dashboard.items');
-    Route::post('/dashboard/post-item', 'GeneralController@postItem');
-    Route::get('/dashboard/get-item', 'GeneralController@getItem');
+    Route::get('/dashboard/needs-help/receiver={receiver}&ph_no={phone_no}', 'ReceiverController@determineHelp')->name('help');
 });

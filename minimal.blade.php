@@ -51,11 +51,11 @@
 <body>
 <div class="flex-center position-ref full-height">
     <div class="code">
-        @yield('code')
+        {{$code ?? ''}}
     </div>
 
     <div class="message" style="padding: 10px;">
-        @yield('message')
+        {{$message ?? ''}}
     </div>
 </div>
 </body>

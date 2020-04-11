@@ -3,35 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use App\Models\Receiver;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Session;
+use App\Helpers\validateFile;
+use App\Jobs\SetChecked;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DeliveryController extends Controller
 {
     public function viewDeliveries() {
-        /* Select only user name from relationship, its compulsory to select the foreign key */
+
+    /*  Select only user name from relationship, its compulsory to select the foreign key  */
+        // Warn: This will only show deliveries that belong to the current authenticated user
         $deliveries = Delivery::with(['user' => function($q)
         {
             $q->select('name', 'id');
-        }])->paginate(5);
-
+        }])->with(['receiver' => function ($query) {
+           $query->select('id', 'name', 'phone_no', 'gps', 'address', 'tehsil');
+        }])->where('user_id', Auth::id())->paginate(5);
         return view('pages.dashboard.deliveries')->with('deliveries', [$deliveries]);
     }
-    public function store(Request $request) {
 
+    public function newDelivery(Request $request) {
         $user_id = Auth::id();
-        $file = $request->hasFile('evidence');
-        abort_unless($file, 500, "Could not detect uploaded Evidence");
 
-        if ( ! ($request->file('evidence')->isValid()) ) {
-            //  Aborting if file is not valid
-            abort(500, "invalid file, please try again");
-        }
         $validated = $request->validate([
             'receiver' => 'required|string|max:40',
             'address' => 'required|string|max:100',
@@ -41,70 +41,127 @@ class DeliveryController extends Controller
             'cost' => 'numeric|max:15000',
             'cnic' => 'required|digits:13',
             'evidence' => 'required|max:1024|mimes:jpeg,png',
-            'tehsil' => 'required|string|max:40'
+            'tehsil' => 'required|string|max:40',
+            'members' => 'required|numeric|max:30',
+            'days' => 'required|numeric|max:30',
         ]);
-//        Evidence Handling
-        $extension = $request->file('evidence')->extension();
-        $today = Carbon::today()->toDateString();
-        //  Access user last uploaded file on today, if null, Initialize to 1
-        $last_file_number = Delivery::where([
-           ['user_id', $user_id],
-           ['created_at', '>=', Carbon::today()]
-        ])->latest()->first();
-        if ($last_file_number === NULL) {
-            $last_file_number = 1;
+
+    //  Calling Validate File Upload function
+        $validateFile = new validateFile();
+        $asset_path = $validateFile->validateFileUpload($request);
+
+        $uploaded = (bool)$asset_path;
+        /*  Abort if file upload Fails   */
+        if ($uploaded === false) {
+            abort(500, "Failed to save Evidence");
         }
-        else {
-            /*
-             * Exploding an array until we get the file name ONLY
-             */
-            $last_file_number = explode("/", $last_file_number->image);
-
-            // Splitting into array and grabbing the file name
-            $last_file_number = end($last_file_number);
-
-            // Splitting file name into name and extension
-            $last_file_number = explode(".", $last_file_number);
-
-            $last_file_number = current($last_file_number);
-            // Splitting file to get the last part of file which indicates number of file
-            $last_file_number = explode("_", $last_file_number);
-
-            // Incrementing file number to be used for new file upload
-            $last_file_number = end($last_file_number) +1;
+        /*
+         * Abort if Receiver exists,
+         * If does not exist, Create a receiver and create Delivery
+         */
+        $receiver = Receiver::where('phone_no', $validated['phone_no'])->first();
+        if ($receiver !== NULL) {
+            abort(500, 'Receiver exists, Please use "Deliver to existing person" form');
+        }
+        if ($receiver === NULL) {
+            $receiver = Receiver::create([
+                'name' => $validated['receiver'],
+                'phone_no' => $validated['phone_no'],
+                'address' => $validated['address'],
+                'gps' => $validated['gps'],
+                'tehsil' => $validated['tehsil'],
+                'cnic' => Crypt::encryptString($validated['cnic']),
+            ]);
         }
 
-        $file_name = $user_id.'_'.$today.'_'.$last_file_number.'.'.$extension;
-        $uploaded = $request->file('evidence')->storeAs('/public', $file_name);
-        $asset_path = 'storage/'.$file_name;
-        $evidence_url = asset($file_name);
         $delivery = Delivery::create([
             'user_id' => $user_id,
-            'receiver' => $validated['receiver'],
-            'address' => $validated['address'],
-            'phone_no' => $validated['phone_no'],
-            'gps'      => $validated['gps'],
-            'goods'    => $validated['goods'],
+            'receiver_id' =>$receiver->id,
+            'goods'    => json_encode($validated['goods']),
             'cost'     => $validated['cost'],
             'image' => $asset_path,
-            'cnic' => Crypt::encryptString($validated['cnic']),
-            'tehsil' => $validated['tehsil'],
+            'members' => $validated['members'],
+            'days' => $validated['days'],
         ]);
-        $uploaded = (bool)$delivery;
-        $created = (bool)$delivery;
 
-    /*  Abort if file upload or record creation fails   */
-        if ($uploaded === false || $created === false) {
+        $created = (bool)$delivery;
+        // Make a queue to make the receiver available to be processed once the supplies duration has ended
+        // Refer to Your phone for details
+        if ($created === true) {
+
+            $delayedTill = (integer)$delivery->days;
+            $delayedTill = $delayedTill * (24*60);
+
+            $created_at = Carbon::parse($delivery->created_at);
+            $created_at = ($created_at->day) * (24*60);
+
+            $delayedTill = $delayedTill + $created_at;
+            setChecked::dispatch($receiver->id)->onConnection('database')->delay($delayedTill);
+        }
+        /*  Abort if Record creation fails   */
+        if ($created === false) {
             abort(500, "Failed to create Record");
         }
         Session::flash('success', "Record created successfully!");
         return \Redirect::back();
     }
-    public function viewReceiverData(Delivery $receiver) {
-        $data = Delivery::with(['user' => function($q)
-        {
-            $q->select('name', 'id');
-        }])->where('receiver', $receiver->receiver)->paginate(5);
-        return view('pages.dashboard.receiver')->with('data', $data);
+
+    public function existingDelivery(Request $request) {
+
+        $validated = $request->validate([
+            'receiver' => 'required|string|max:40',
+            'phone_no' => 'required|digits:11',
+            'goods' => 'required|string|max:255',
+            'cost' => 'numeric|max:15000',
+            'evidence' => 'required|max:1024|mimes:jpeg,png',
+            'members' => 'required|numeric|max:30',
+            'days' => 'required|numeric|max:30',
+        ]);
+        $validateFile = new validateFile();
+        $asset_path = $validateFile->validateFileUpload($request);
+        $uploaded = (bool)$asset_path;
+        /*  Abort if file upload Fails   */
+        if ($uploaded === false) {
+            abort(500, "Failed to save Evidence");
+        }
+
+        $existing_receiver = Receiver::where('phone_no', $validated['phone_no'])->first();
+        if ($existing_receiver === NULL) {
+            abort(500, "Invalid Existing Receiver Data");
+        }
+
+        $delivery = Delivery::create([
+            'user_id' => Auth::id(),
+            'receiver_id' =>$existing_receiver->id,
+            'goods'    => json_encode($validated['goods']),
+            'cost'     => $validated['cost'],
+            'image' => $asset_path,
+            'members' => $validated['members'],
+            'days' => $validated['days'],
+        ]);
+
+        $created = (bool)$delivery;
+        // Make a queue to make the receiver available to be processed once the supplies duration has ended
+        // Refer to Your phone for details
+        if ($created === true) {
+
+            $delayedTill = (integer)$delivery->days;
+            $delayedTill = $delayedTill * (24*60);
+
+            $created_at = Carbon::parse($delivery->created_at);
+            $created_at = ($created_at->day) * (24*60);
+
+            $delayedTill = $delayedTill + $created_at;
+            setChecked::dispatch($existing_receiver->id)->onConnection('database')->delay($delayedTill);
+        }
+        /*  Abort if Record creation fails   */
+        if ($created === false) {
+            abort(500, "Failed to create Record");
+        }
+        /* Set Help attribute to false of existing receiver after the delivery has been created. Check ur phone for details */
+        $existing_receiver->help = false;
+        $existing_receiver->save();
+        Session::flash('success', "Record created successfully!");
+        return \Redirect::back();
     }
 }

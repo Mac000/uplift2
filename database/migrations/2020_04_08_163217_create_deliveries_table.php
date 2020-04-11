@@ -16,20 +16,18 @@ class CreateDeliveriesTable extends Migration
         Schema::create('deliveries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('receiver', 40);
-            $table->string('phone_no', 11);
-            $table->string('address', 100);
-            $table->string('gps', 30);
-            $table->string('goods', 255);
+            $table->unsignedBigInteger('receiver_id');
+            $table->json('goods');
             $table->integer('cost');
-            $table->string('tehsil', 40);
             $table->timestamps();
 
-         //  Adding CNIC at the end to avoid issues in front end where view is generated on assumption of order of columns in table
+            //  Adding CNIC at the end to avoid issues in front end where view is generated on assumption of order of columns in table
             $table->string('image');
-            $table->text('cnic');
+            $table->unsignedTinyInteger('members');
+            $table->unsignedTinyInteger('days');
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('receiver_id')->references('id')->on('receivers');
         });
     }
 

@@ -36,6 +36,9 @@
                         <a class="nav-link" href="#">How to</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/all-stats">All Stats</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/register">Sign up</a>
                     </li>
                     <li class="nav-item">

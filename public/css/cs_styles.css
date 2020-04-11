@@ -48,15 +48,14 @@
     line-height: 1.5;
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-
     cursor: pointer;
     color: #fff;
     background-color: #3D2EA8;
-    border-color: #3D2EA8;
+    border-color: white;
 }
 .cs-brand-btn:hover {
     background-color: #261D69;
-    border-color: #261D69;
+    border-color: gray;
 }
 .cs-i-w-same {
     width: 50px;
@@ -158,6 +157,9 @@
 }
 .cs-row-mr-0 {
     margin-right: 0;
+}
+.cs-row-ml-0 {
+    margin-left: 0;
 }
 .cs-pad-0 {
     padding: 0;
@@ -366,6 +368,9 @@ hr {
 }
 
 /*  UPLIFT Web app Styles  */
+.cs-min-h-50 {
+    min-height: 50vh;
+}
 .cs-w-80 {
     width: 80% !important;
 }
@@ -377,6 +382,25 @@ hr {
 }
 .cs-h-60 {
     height: 60vh;
+}
+.cs-w-60 {
+    width: 60%;
+}
+.cs-w-32 {
+    width: 32%;
+}
+.cs-w-30 {
+    width: 30%;
+}
+.cs-tag-font {
+    font-size: 1.1rem !important;
+}
+.cs-receiver-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.cs-data-text {
+    font-size: 1.1rem;
 }
 .cs-alert {
     width: 60%;
@@ -390,9 +414,14 @@ hr {
     float: left;
     height: 115vh;
 }
-@media screen and (max-width: 1200px) and (min-width: 770px) {
+@media screen and (max-width: 550px) {
+    .cs-mq-550 {
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 1400px) and (min-width: 770px) {
     .nav-row{
-        height: 120vh;
+        height: 170vh;
     }
 }
 @media screen and (max-width: 769px) and (min-width: 250px) {
@@ -434,7 +463,7 @@ li .text-decoration-none {
     Like, size is 720px then query is applied while it should have been if its less than 800    */
 @media screen and (max-width: 800px) and (min-width: 350px) {
     .menu {
-        width: 100% !important;
+        /* width: 100% !important; */
     }
 }
 .cs-panel {

@@ -17,6 +17,7 @@
                 <th>Delivered at</th>
                 <th>Delivered By</th>
                 <th>Evidence</th>
+                <th>Help?</th>
             </tr>
             </thead>
         @foreach($deliveries as $collection)
@@ -26,17 +27,21 @@
                 @forelse($collection as $delivery)
                     <tr>
                         <td>
-                            <a href="{{ route('receiverData', ['receiver' => $delivery->receiver]) }}">{{ $delivery->receiver }}</a>
+                            <a class="text-capitalize cs-receiver-text"
+                               href="{{ route('receiverData', ['receiver' => $delivery->receiver->id]) }}">{{ $delivery->receiver->name }}</a>
                         </td>
-                        <td>{{ $delivery->phone_no }}</td>
-                        <td>{{ $delivery->address }}</td>
-                        <td>{{ $delivery->gps }}</td>
+                        <td>{{ $delivery->receiver->phone_no }}</td>
+                        <td>{{ $delivery->receiver->address }}</td>
+                        <td>{{ $delivery->receiver->gps }}</td>
                         <td>{{ $delivery->goods }}</td>
                         <td>{{ $delivery->cost }}</td>
-                        <td>{{ $delivery->tehsil }}</td>
+                        <td>{{ $delivery->receiver->tehsil }}</td>
                         <td>{{ $delivery->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</td>
-                        <td>{{ $delivery->user->name }}</td>
-                        <td><a href="{{ $delivery->image }}">View</a></td>
+                        <td class="text-capitalize cs-receiver-text">{{ $delivery->user->name }}</td>
+                        <td><a class="btn btn-primary" href="{{ $delivery->image }}">View</a></td>
+                        <td><a class="btn btn-danger"
+                               href="{{ route('help', ['receiver' => $delivery->receiver->id,'phone_no' => $delivery->receiver->phone_no]) }}">Check</a>
+                        </td>
                     </tr>
                 @empty
                     @component('components.bulma_warn')

@@ -6,8 +6,12 @@
 
     @forelse($receivers as $receiver)
         <div class="cs-w-48 ml-2 mt-2 p-1">
-            <a class=""
-               href="{{ route('receiverData', ['receiver' => $receiver->receiver]) }}">{{ $receiver->receiver }}</a>
+            <a class="text-capitalize cs-receiver-text"
+               href="{{ route('receiverData', ['receiver' => $receiver->receiver->id]) }}">{{ $receiver->receiver->name }}
+            </a>
+            @if($receiver->receiver->help === 1)
+            <span class="badge badge-pill badge-danger">Help!</span>
+            @endif
         </div>
         @empty
         @component('components.bulma_warn')

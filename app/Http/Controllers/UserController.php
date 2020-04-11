@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use App\Models\Receiver;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,17 +17,19 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     public function myReceivers() {
-        $receivers = Delivery::distinct()->select('receiver')->where('user_id', Auth::id())->get();
+//        $receivers = Delivery::distinct()->select('receiver')->where('user_id', Auth::id())->get();
+        $receivers = Delivery::with('receiver')->distinct()->select( 'receiver_id')->where('user_id', Auth::id())->get();
         return view('pages.dashboard.myReceivers')->with('receivers', $receivers);
     }
 
     public function dashboard() {
         $user_id =Auth::id();
-        $people = Delivery::distinct()->where('user_id', $user_id )->count('receiver');
+//        $people = Delivery::distinct()->where('user_id', $user_id )->count('receiver');
+        $people = Delivery::distinct()->where('user_id', $user_id)->count('receiver_id');
         $people_15 = Delivery::where([
             ['created_at', '<=', Carbon::now()->subDays(15)],
             ['user_id', $user_id],
-        ])->distinct()->count('receiver');
+        ])->distinct()->count('receiver_id');
 
         $cost = Delivery::where('user_id', $user_id)->sum('cost');
         $cost_15 = Delivery::where([

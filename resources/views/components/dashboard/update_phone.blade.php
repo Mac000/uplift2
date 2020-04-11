@@ -27,7 +27,7 @@
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="cs-btn-wrapper">
-                            <button type="submit" class="btn btn-outline-info">Update</button>
+                            <button type="submit" class="btn btn-success">Update</button>
                         </div>
                         @include('components.errors')
                     </form>
