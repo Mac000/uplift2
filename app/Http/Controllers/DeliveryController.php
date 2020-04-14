@@ -156,6 +156,7 @@ class DeliveryController extends Controller
         }
         /* Set Help attribute to false of existing receiver after the delivery has been created. Check ur phone for details */
         $existing_receiver->help = false;
+        $existing_receiver->needs = NULL;
         $existing_receiver->save();
         Session::flash('success', "Record created successfully!");
         return \Redirect::back();
