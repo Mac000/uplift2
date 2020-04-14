@@ -1,0 +1,50 @@
+<div class="table-responsive-lg ml-1 cs-min-h-50 mx-auto">
+    <table id="" class="table table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>Flour</td>
+            <td>350g</td>
+        </tr>
+        <tr>
+            <td>Oil</td>
+            <td>70ml</td>
+        </tr>
+        <tr>
+            <td>Daal</td>
+            <td>50g</td>
+        </tr>
+        <tr>
+            <td>Tea</td>
+            <td>10g</td>
+        </tr>
+        <tr>
+            <td>Sugar</td>
+            <td>50g</td>
+        </tr>
+        <tr>
+            <td>Milk</td>
+            <td>40g</td>
+        </tr>
+        <tr>
+            <td>Rice</td>
+            <td>170g</td>
+        </tr>
+        <tr>
+            <td>Salt</td>
+            <td>35g</td>
+        </tr>
+        <tr>
+            <td>RedChilli</td>
+            <td>10g</td>
+        </tr>
+        <tr>
+            <td>Haldi</td>
+            <td>10g</td>
+        </tr>
+    </table>
+</div>

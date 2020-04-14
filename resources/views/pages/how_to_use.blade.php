@@ -36,7 +36,7 @@
                     your position at the address of Receiver.
                 </li>
                 <li class="ml-4">Provide comma separated list of goods. Please use "g" and "ml" for units. Example: Rice 5000g,flour 10000g</li>
-                <li class="ml-4">If some item has two names, e.g: "Red Chilli" then use the "camelCase" for naming. Remember Space and commas has a special meaning.</li>
+                <li class="ml-4">If some item has two names, e.g: "RedChilli" then use the "PascalCase" for naming. Remember Space and commas has a special meaning.</li>
                 <li class="ml-4">The format and units for goods is important. Please don't violate it or the "Help needed" feature will not work properly</li>
                 <li class="ml-4">Finally, Provide the cost of supplies, maximum amount is 15000</li>
                 <li class="ml-4">Evidence image is required and it is expected that you take the picture while handing over goods to receiver</li>
@@ -56,10 +56,12 @@
                 <li class="ml-4">This feature is basically meant to check if the provided supplies are enough for a given number of days</li>
                 <li class="ml-4">After that number of days, the "help needed" is cleared</li>
                 <li class="ml-4">As long as no new delivery is made to that particular receiver, this feature will not check the specific receiver</li>
+                <li class="ml-4">A table of essentials for one person/day is given below. Items and quantities shown here are used in System</li>
             </ol>
         </div>
     </div>
 
+    @include('components.essentials_table')
 </div>
 
 @include('components.footer')
