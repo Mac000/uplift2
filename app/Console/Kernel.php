@@ -29,9 +29,8 @@ class Kernel extends ConsoleKernel
     {
 //         $schedule->command('inspire')
 //                  ->hourly();
-        $schedule->command('determine:needs')
-            ->everyMinute();
-//            ->twiceDaily(12,24);
+        $schedule->command('determine:needs')->twiceDaily(12,24);
+//            ->everyMinute();
     }
     /**
      * Register the commands for the application.

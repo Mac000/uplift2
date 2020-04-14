@@ -368,6 +368,20 @@ hr {
 }
 
 /*  UPLIFT Web app Styles  */
+.cs-color-code {
+    display: inline-block;
+    min-width: 45%;
+    min-height: 8vh;
+    margin: 5px;
+    padding: 3px;
+
+}
+@media screen and (max-width: 500px) {
+    .cs-color-code {
+        width: 100% !important;
+        height: 5vh !important;
+    }
+}
 .cs-min-h-50 {
     min-height: 50vh;
 }

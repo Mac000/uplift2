@@ -9,7 +9,7 @@ class Delivery extends Model
     protected $table = 'deliveries';
 
     protected $fillable = [
-        'user_id', 'receiver_id', 'cost', 'goods', 'image', 'members', 'days',
+        'user_id', 'receiver_id', 'cost', 'goods', 'image', 'days',
     ];
 
     protected $hidden = [

@@ -10,34 +10,52 @@
 
     <div class="row">
         <div class="col-md">
+            <h4 class="pl-2 p-1">General Guidelines</h4>
             <ol>
                 <li class="ml-4">First of all, Register yourself on website.</li>
                 <li class="ml-4">Login in you account</li>
                 <li class="ml-4">You will be redirected to dashboard. This is the place where you will do everything
                 </li>
                 <li class="ml-4">From dashboard navigation menu, You can register a delivery, View all the deliveries,
-                    Search
-                    for an individual delivery, view your receivers and then you can view their deliveries too. Lastly,
-                    you can update your phone
-                    number and password.
+                    Search for an individual delivery, view your receivers and then you can view their deliveries too.
+                    Lastly, you can update your phone number and password.
                 </li>
-                {{--            <li class="ml-4"></li>--}}
             </ol>
         </div>
     </div>
 
-    <div class="row mb-5">
+    <div class="row mb-2">
         <div class="col-md">
-            <h4 class="pl-2 p-1">Guide for registering Delivery</h4>
+            <h4 class="pl-2 p-1">Guide for Registering Delivery</h4>
             <ol>
-                <li class="ml-4">Go to register delivery</li>
+                <li class="ml-4">Go to "Deliver to New Person" if you are delivering to a person for first time</li>
+                <li class="ml-4">Go to "Deliver to existing Person" if you have already delivered to a person earlier</li>
                 <li class="ml-4">Fill the form as per instructions in fields.</li>
                 <li class="ml-4">Write Address in comma separated format. like: Mr.XYZ, block 4, House 10, Lahore</li>
                 <li class="ml-4">Open up Google maps, access your position and copy paste the coordinates. Please provide coordinates of
                     your position at the address of Receiver.
                 </li>
-                <li class="ml-4">Put one Item per line along. Provide quantity/number as well. Example: Rice 5kg</li>
+                <li class="ml-4">Provide comma separated list of goods. Please use "g" and "ml" for units. Example: Rice 5000g,flour 10000g</li>
+                <li class="ml-4">If some item has two names, e.g: "Red Chilli" then use the "camelCase" for naming. Remember Space and commas has a special meaning.</li>
+                <li class="ml-4">The format and units for goods is important. Please don't violate it or the "Help needed" feature will not work properly</li>
                 <li class="ml-4">Finally, Provide the cost of supplies, maximum amount is 15000</li>
+                <li class="ml-4">Evidence image is required and it is expected that you take the picture while handing over goods to receiver</li>
+                <li class="ml-4">If you have higher mega pixel cams then set the resolution to low mega pixel otherwise your image will be larger than 1MB</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md">
+            <h4 class="pl-2 p-1">How "Help Needed Works"</h4>
+            <ol>
+                <li class="ml-4">There is a mechanism which checks receivers if they need help(with supplies) based on the goods provided to them</li>
+                <li class="ml-4">This works by comparing a list of ESSENTIAL items against the list of provided items to receiver</li>
+                <li class="ml-4">Anything which is not inside Essential items will not be counted toward "Help needed"</li>
+                <li class="ml-4">This routine/mechanism is executed after every 12hrs</li>
+                <li class="ml-4">This feature is basically meant to check if the provided supplies are enough for a given number of days</li>
+                <li class="ml-4">After that number of days, the "help needed" is cleared</li>
+                <li class="ml-4">As long as no new delivery is made to that particular receiver, this feature will not check the specific receiver</li>
             </ol>
         </div>
     </div>

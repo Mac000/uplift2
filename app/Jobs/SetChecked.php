@@ -36,6 +36,7 @@ class SetChecked implements ShouldQueue
         if ($receiver !== NULL) {
             $receiver->checked = false;
             $receiver->help = false;
+            $receiver->needs = NULL;
             $receiver->save();
         }
     }

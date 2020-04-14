@@ -16,7 +16,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                                       value="{{ old('name') }}" required autocomplete="name" autofocus maxlength="50">
+                                       value="{{ old('name') }}" required autocomplete="name" autofocus maxlength="50" placeholder="only alphabets allowed">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -29,8 +29,13 @@
                             <label for="phone_no" class="col-md-4 col-form-label text-md-right">Mobile Number</label>
 
                             <div class="col-md-6">
-                                <input id="phone_no" type="text" class="form-control" name="phone_no" required autocomplete="phone_no"
-                                       maxlength="11" placeholder="xxxxxxxxxxx" autofocus>
+                                <input id="phone_no" type="text" class="form-control @error('phone_no') is-invalid @enderror" name="phone_no" required
+                                       autocomplete="phone_no" maxlength="11" placeholder="xxxxxxxxxxx" autofocus value="{{ old('phone_no') }}">
+                                @error('phone_no')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -38,8 +43,13 @@
                             <label for="tehsil" class="col-md-4 col-form-label text-md-right">Tehsil</label>
 
                             <div class="col-md-6">
-                                <input id="tehsil" type="text" class="form-control" name="tehsil" required autocomplete="tehsil"
-                                       maxlength="40" placeholder="Your Tehsil" autofocus>
+                                <input id="tehsil" type="text" class="form-control @error('tehsil') is-invalid @enderror" name="tehsil" required
+                                       autocomplete="tehsil" maxlength="40" placeholder="Your Tehsil" autofocus value="{{ old('tehsil') }}">
+                                @error('tehsil')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -47,8 +57,13 @@
                             <label for="cnic" class="col-md-4 col-form-label text-md-right">CNIC</label>
 
                             <div class="col-md-6">
-                                <input id="cnic" type="text" class="form-control" name="cnic" required autocomplete="cnic"
-                                       maxlength="13" placeholder="13 digits without dashes" autofocus>
+                                <input id="cnic" type="text" class="form-control @error('cnic') is-invalid @enderror" name="cnic" required
+                                       autocomplete="cnic" maxlength="13" placeholder="13 digits without dashes" autofocus value="{{ old('cnic') }}">
+                                @error('cnic')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -56,7 +71,8 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                       value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

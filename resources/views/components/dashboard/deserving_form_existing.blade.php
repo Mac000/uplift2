@@ -30,15 +30,6 @@
 
         <div class="form-group row justify-content-center">
             <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
-                <input type="number" class="form-control" id="member" placeholder="How many members?" name="members"
-                       required max="30">
-                <div class="valid-feedback">Valid.</div>
-                <div class="invalid-feedback">Please fill out this field.</div>
-            </div>
-        </div>
-
-        <div class="form-group row justify-content-center">
-            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <input type="text" class="form-control" id="days" placeholder="For how many days?" name="days" required max="30">
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
@@ -48,8 +39,7 @@
         <div class="form-group row justify-content-center">
             <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                     <textarea class="form-control" id="goods"
-                              placeholder="Please provide list of goods. One item per line" name="goods"
-                              required></textarea>
+                              placeholder="item1 quantity1,item2 quantity2" name="goods" required></textarea>
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
             </div>
@@ -100,6 +90,7 @@
 <script>
     $(document).ready(function () {
         $('#cnic').tooltip({title: "Format: xxxxxxxxxxxxx", trigger: "click",});
+        $('#goods').tooltip({title: 'Please follow the format and use "g" and "ml" for units', trigger: "click",});
         // delay: {show: 100, hide: 500}});
     });
 </script>

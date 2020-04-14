@@ -108,7 +108,8 @@
                     let a = document.createElement("a");
                     // Change href for production environment
                     a.classList.add('btn', 'btn-primary');
-                    a.href = "http://127.0.0.1:8000/" + image;
+                    // a.href = "http://127.0.0.1:8000/" + image;
+                    a.href = "http://178.128.89.186/" + image;
                     a.innerHTML = "View";
                     td.appendChild(a);
                     tr.appendChild(td);

@@ -22,8 +22,7 @@ class CreateDeliveriesTable extends Migration
             $table->timestamps();
 
             //  Adding CNIC at the end to avoid issues in front end where view is generated on assumption of order of columns in table
-            $table->string('image');
-            $table->unsignedTinyInteger('members');
+            $table->string('image', 60);
             $table->unsignedTinyInteger('days');
 
             $table->foreign('user_id')->references('id')->on('users');

@@ -42,7 +42,6 @@ class DeliveryController extends Controller
             'cnic' => 'required|digits:13',
             'evidence' => 'required|max:1024|mimes:jpeg,png',
             'tehsil' => 'required|string|max:40',
-            'members' => 'required|numeric|max:30',
             'days' => 'required|numeric|max:30',
         ]);
 
@@ -80,7 +79,6 @@ class DeliveryController extends Controller
             'goods'    => json_encode($validated['goods']),
             'cost'     => $validated['cost'],
             'image' => $asset_path,
-            'members' => $validated['members'],
             'days' => $validated['days'],
         ]);
 
@@ -114,7 +112,6 @@ class DeliveryController extends Controller
             'goods' => 'required|string|max:255',
             'cost' => 'numeric|max:15000',
             'evidence' => 'required|max:1024|mimes:jpeg,png',
-            'members' => 'required|numeric|max:30',
             'days' => 'required|numeric|max:30',
         ]);
         $validateFile = new validateFile();
@@ -136,7 +133,6 @@ class DeliveryController extends Controller
             'goods'    => json_encode($validated['goods']),
             'cost'     => $validated['cost'],
             'image' => $asset_path,
-            'members' => $validated['members'],
             'days' => $validated['days'],
         ]);
 

@@ -48,10 +48,9 @@ class DetermineNeeds extends Command
         ])->chunk(100, function ($receiver_collection) {
                 if (!$receiver_collection->isEmpty()) {
                     foreach ($receiver_collection as $receiver) {
-                        // There should only be latest delivery, no point in processing other deliveries. fix the query
+                    // There should only be latest delivery, no point in processing other deliveries. fix the query
                         foreach ($receiver->deliveries as $delivery) {
                             $days = $delivery->days;
-                            $members = $delivery->members;
                             $items_json = $delivery->goods;
 
                             $items_json_array = explode(",", $items_json);
@@ -70,59 +69,57 @@ class DetermineNeeds extends Command
                                 $items_json_array[$value_iterator] = str_replace('"', "", $items_json_array[$value_iterator]);
                                 $items_json_array[$value_iterator] = strtolower($items_json_array[$value_iterator]);
                                 $combined->put($items_json_array[$key_iterator], $items_json_array[$value_iterator]);
-                                // even indexes = items, odd indexes = quantity
+                            // even indexes = items, odd indexes = quantity
                                 $key_iterator = $key_iterator + 2;
                                 $value_iterator = $value_iterator + 2;
                             }
 
-//                            $essentials = collect([
-//                                'flour' => '350g',
-//                                'oil' => '70ml',
-//                                'daal' => '50g',
-//                                'tea' => '10g',
-//                                'sugar' => '50g',
-//                                'milk' => '40g',
-//                                'rice' => '170g',
-//                                'salt' => '35g',
-//                                'redChilli' => '10g',
-//                                'haldi' => '10g',
-//                            ]);
                             $essentials = collect([
-                                'flour' => '1kg',
-                                'oil' => '1ltr',
-                                'chicken' => '1kg',
-                                'sugar' => '1kg',
-                                'ghee' => '1kg',
-                                'rice' => '1kg',
+                                'flour' => '350g',
+                                'oil' => '70ml',
+                                'daal' => '50g',
+                                'tea' => '10g',
+                                'sugar' => '50g',
+                                'milk' => '40g',
+                                'rice' => '170g',
+                                'salt' => '35g',
+                                'redChilli' => '10g',
+                                'haldi' => '10g',
                             ]);
                             $units = collect([
                                 'flour' => 'Kg',
                                 'oil' => 'Ltr',
-                                'chicken' => 'Kg',
+                                'daal' => 'Kg',
+                                'tea' => 'Kg',
                                 'sugar' => 'Kg',
-                                'ghee' => 'Kg',
+                                'milk' => 'Kg',
                                 'rice' => 'Kg',
+                                'salt' => 'Kg',
+                                'redChilli' => 'Lg',
+                                'haldi' => 'Kg',
                             ]);
+
                             $needs = collect();
                             $essentials_keys_only = $essentials->keys();
                             $units_keys_only = $units->keys();
                             $i = 0;
 
                             foreach ($essentials as $essential) {
-//            If the essential item does not exist, then just skip and increment $i
+                            //  If the essential item does not exist, then just skip and increment $i
                                 if ($combined->has($essentials_keys_only[$i])) {
                                     $combined_item = $combined->get($essentials_keys_only[$i]);
-                                    // Get the quantity of Receiver item by removing any non-numeric character
+                                // Get the quantity of Receiver item by removing any non-numeric character
                                     $combined_item = preg_replace('/[^0-9]/', '', $combined_item);
                                     $essential_item = $essentials->get($essentials_keys_only[$i]);
-                                    // Get the quantity of Essential item by removing any non-numeric character
+                                // Get the quantity of Essential item by removing any non-numeric character
                                     $essential_item = preg_replace('/[^0-9]/', '', $essential_item);
-                                    //  Multiplying essential quantity to determine needed supplies for a given family and for given days
-                                    $essential_item = ($essential_item * $members) * $days;
-                                    if ($combined_item < $essential_item) {
-                                        $difference = $essential_item - $combined_item;
+                                //  Multiplying essential quantity to determine needed supplies for a given family and for given days
+                                    $essential_item = ($essential_item * $days);
 
-                                        //  Appending unit to item quantity
+                                    if ($combined_item < $essential_item) {
+                                    //  Divide by 1000 since all units we have are "g" and "ml"
+                                        $difference = ($essential_item - $combined_item) / 1000;
+                                //  Appending unit to item quantity
                                         $difference = $difference. $units->get($units_keys_only[$i]);
                                         $needs->put($essentials_keys_only[$i], $difference);
                                     }
