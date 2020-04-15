@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0248df0d-2e69-42a7-83a1-04bc8914359e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/dashboard/ration_bag.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DeliveryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DeliveryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/cs_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/cs_styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/dashboard/bulma_nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/dashboard/bulma_nav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form_existing.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form_existing.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,32 +27,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/cs_styles.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1248">
-              <caret line="376" column="26" selection-start-line="376" selection-start-column="26" selection-end-line="376" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DeliveryController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1752">
-              <caret line="124" column="5" selection-start-line="124" selection-start-column="5" selection-end-line="124" selection-end-column="5" />
-              <folding>
-                <element signature="e#40#64#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+            <state relative-caret-position="450">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DetermineNeeds_Original.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-150">
+              <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -105,7 +85,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2020_04_07_115841_create_items_table.php" />
         <option value="$PROJECT_DIR$/app/Models/Item.php" />
         <option value="$PROJECT_DIR$/config/database.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_03_31_124839_create_deliveries_table.php" />
@@ -144,7 +123,6 @@
         <option value="$PROJECT_DIR$/resources/views/pages/dashboard/needsHelp.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/components/essentials_table.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/how_to_use.blade.php" />
-        <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/resources/views/components/dashboard/bulma_nav.blade.php" />
         <option value="$PROJECT_DIR$/public/css/cs_styles.css" />
         <option value="$PROJECT_DIR$/database/migrations/2020_04_15_111929_create_rations_table.php" />
@@ -156,6 +134,8 @@
         <option value="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DeliveryController.php" />
+        <option value="$PROJECT_DIR$/DetermineNeeds_Original.php" />
+        <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
       </list>
     </option>
   </component>
@@ -419,15 +399,16 @@
       <workItem from="1586761925964" duration="8005000" />
       <workItem from="1586851735556" duration="4715000" />
       <workItem from="1586856705997" duration="1169000" />
-      <workItem from="1586926810937" duration="8078000" />
+      <workItem from="1586926810937" duration="8626000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="283631000" />
+    <option name="totallyTimeSpent" value="284179000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27382752" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -480,13 +461,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/errors/minimal_original.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="46" column="35" lean-forward="true" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/errors/500_original.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -837,10 +811,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DetermineNeeds_Original.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-150">
+          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+        <state relative-caret-position="450">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
