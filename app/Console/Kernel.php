@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
         Commands\DetermineNeeds::class,
+        'App\Console\Commands\DetermineNeeds::class',
     ];
 
     /**
@@ -29,7 +29,8 @@ class Kernel extends ConsoleKernel
     {
 //         $schedule->command('inspire')
 //                  ->hourly();
-        $schedule->command('determine:needs')->twiceDaily(11, 23);
+//        $schedule->command('determine:needs')->twiceDaily(11, 23);
+        $schedule->command('determine:needs')->everyThirtyMinutes();
 //            ->everyMinute();
     }
     /**
