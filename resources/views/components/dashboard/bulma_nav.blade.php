@@ -7,6 +7,7 @@
             <li><a class="text-decoration-none" href="/dashboard">Dashboard</a></li>
             <li><a class="text-decoration-none" href="/dashboard/register-delivery-new">Deliver to New person</a></li>
             <li><a class="text-decoration-none" href="/dashboard/register-delivery-existing">Deliver to existing person</a></li>
+            <li><a class="text-decoration-none" href="/dashboard/create-ration-bag">Create Ration bag</a></li>
             <li><a class="text-decoration-none" href="/view-deliveries">View all Deliveries</a></li>
             <li>
                 <a class="text-decoration-none" href="/dashboard/view-individual-deliveries">View individuals deliveries</a>

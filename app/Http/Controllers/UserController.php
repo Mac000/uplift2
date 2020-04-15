@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use App\Models\Ration;
 use App\Models\Receiver;
 use App\User;
 use Carbon\Carbon;
@@ -70,5 +71,20 @@ class UserController extends Controller
         $user->save();
         Session::flash('success', "Password Updated successfully!");
         return redirect('/dashboard/settings');
+    }
+    public function rationBag(Request $request) {
+        $validated = $request->validate([
+           'name' => 'required|string|max:40',
+           'rations' => 'required|string',
+        ]);
+        $rationBag = Ration::create([
+            'user_id' => Auth::id(),
+           'name' => $validated['name'],
+           'rations' => json_encode($validated['rations']),
+        ]);
+        $created = (bool)$rationBag;
+        abort_unless($created, 500, 'Failed to create Ration bag :(');
+        Session::flash('success', "Ration Bag has been created!");
+        return \Redirect::back();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use App\Models\Ration;
 use App\Models\Receiver;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,6 +30,11 @@ class DeliveryController extends Controller
         return view('pages.dashboard.deliveries')->with('deliveries', [$deliveries]);
     }
 
+    public function newDeliveryForm() {
+        $rationBag = Ration::where('user_id', Auth::id())->get();
+        return view('pages.dashboard.register_delivery_new')->with('rationBags', $rationBag);
+    }
+
     public function newDelivery(Request $request) {
         $user_id = Auth::id();
 
@@ -37,13 +43,22 @@ class DeliveryController extends Controller
             'address' => 'required|string|max:100',
             'phone_no' => 'required|digits:11',
             'gps' => 'required|string|max:30',
-            'goods' => 'required|string|max:255',
+            'goods' => 'nullable|string|max:255',
+            'rations' => 'nullable|string|max:255',
             'cost' => 'numeric|max:15000',
             'cnic' => 'required|digits:13',
             'evidence' => 'required|max:1024|mimes:jpeg,png',
             'tehsil' => 'required|string|max:40',
             'days' => 'required|numeric|max:30',
         ]);
+        //  Aborting if both rations and goods are empty/NULL
+        if ($validated['goods'] === NULL && $validated['rations'] === NULL) {
+            abort(500, 'You must provide either rationBag OR Goods List!');
+        }
+
+        if ($validated['rations'] !== NULL) {
+            $validated['goods'] = $validated['rations'];
+        }
 
     //  Calling Validate File Upload function
         $validateFile = new validateFile();
@@ -104,16 +119,31 @@ class DeliveryController extends Controller
         return \Redirect::back();
     }
 
+    public function existingDeliveryForm() {
+        $rationBag = Ration::where('user_id', Auth::id())->get();
+        return view('pages.dashboard.register_delivery_existing')->with('rationBags', $rationBag);
+    }
+
     public function existingDelivery(Request $request) {
+//        dd($request);
 
         $validated = $request->validate([
             'receiver' => 'required|string|max:40',
             'phone_no' => 'required|digits:11',
-            'goods' => 'required|string|max:255',
+            'goods' => 'nullable|string|max:255',
+            'rations' => 'nullable|string|max:255',
             'cost' => 'numeric|max:15000',
             'evidence' => 'required|max:1024|mimes:jpeg,png',
             'days' => 'required|numeric|max:30',
         ]);
+    //  Aborting if both rations and goods are empty/NULL
+        if ($validated['goods'] === NULL && $validated['rations'] === NULL) {
+            abort(500, 'You must provide either rationBag OR Goods List!');
+        }
+
+        if ($validated['rations'] !== NULL) {
+            $validated['goods'] = $validated['rations'];
+        }
         $validateFile = new validateFile();
         $asset_path = $validateFile->validateFileUpload($request);
         $uploaded = (bool)$asset_path;

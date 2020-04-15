@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Receiver;
 use Illuminate\Console\Command;
 
-class DetermineNeeds extends Command
+class DetermineNeeds_Original extends Command
 {
     /**
      * The name and signature of the console command.

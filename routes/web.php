@@ -21,11 +21,14 @@ Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'verified'])->group(function () {
 //    It should be dashboard/register-delivery for Delivery routes
-    Route::view('dashboard/register-delivery-new', 'pages.dashboard.register_delivery_new');
+    Route::get('dashboard/register-delivery-new', 'DeliveryController@newDeliveryForm');
     Route::post('dashboard/register-delivery-new', 'DeliveryController@newDelivery');
 
-    Route::view('dashboard/register-delivery-existing', 'pages.dashboard.register_delivery_existing');
+//    Route::view('dashboard/register-delivery-existing', 'pages.dashboard.register_delivery_existing');
+    Route::get('dashboard/register-delivery-existing', 'DeliveryController@existingDeliveryForm');
     Route::post('dashboard/register-delivery-existing', 'DeliveryController@existingDelivery');
+    Route::view('dashboard/create-ration-bag', 'pages.dashboard.ration_bag');
+    Route::post('dashboard/create-ration-bag', 'UserController@rationBag');
 
     Route::get('/view-deliveries', 'DeliveryController@viewDeliveries');
     Route::get('/view-deliveries/{receiver}', 'ReceiverController@viewReceiverData')->name('receiverData');
