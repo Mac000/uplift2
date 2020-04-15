@@ -41,3 +41,14 @@
     </form>
 
 </div>
+
+<style>
+    .temp-bg {
+        background-color: #32A932 !important;
+    }
+    .cs-sign-up {
+        margin-top: 0.5rem;
+        border: 1px solid #99AAB5;
+        margin-bottom: 0.5rem;
+    }
+</style>
