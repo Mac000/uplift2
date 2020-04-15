@@ -370,15 +370,6 @@ hr {
 
 
 /*  UPLIFT Web app Styles  */
-
-.temp-bg {
-    background-color: #32A932 !important;
-}
-.cs-sign-up {
-    margin-top: 0.5rem;
-    border: 1px solid #99AAB5;
-    margin-bottom: 0.5rem;
-}
 .cs-color-code {
     display: inline-block;
     min-width: 45%;
@@ -386,6 +377,14 @@ hr {
     margin: 5px;
     padding: 3px;
 
+}
+.temp-bg {
+    background-color: #32A932 !important;
+}
+.cs-sign-up {
+    margin-top: 0.5rem;
+    border: 1px solid #99AAB5;
+    margin-bottom: 0.5rem;
 }
 @media screen and (max-width: 500px) {
     .cs-color-code {
