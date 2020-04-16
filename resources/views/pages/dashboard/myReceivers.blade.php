@@ -9,8 +9,11 @@
             <a class="text-capitalize cs-receiver-text"
                href="{{ route('receiverData', ['receiver' => $receiver->receiver->id]) }}">{{ $receiver->receiver->name }}
             </a>
-            @if($receiver->receiver->help === 1)
+            @if($receiver->receiver->help === 1 && $receiver->receiver->invalid !== 1)
             <span class="badge badge-pill badge-danger">Help!</span>
+            @endif
+            @if($receiver->receiver->invalid === 1)
+                <span class="badge badge-pill badge-secondary">invalid!</span>
             @endif
         </div>
         @empty

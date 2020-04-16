@@ -64,6 +64,15 @@
                     @endslot
                 @endcomponent
             @endforelse
+
+            @if($invalid === 1)
+                @component('components.bulma_alert_secondary')
+                    @slot('message')
+                        Your provided goods list did not follow the recommended format. Hence, we weren't able to
+                        process it
+                    @endslot
+                @endcomponent
+            @endif
         </div>
     </div>
 </div>

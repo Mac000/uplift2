@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     public function myReceivers() {
-//        $receivers = Delivery::distinct()->select('receiver')->where('user_id', Auth::id())->get();
         $receivers = Delivery::with('receiver')->distinct()->select( 'receiver_id')->where('user_id', Auth::id())->get();
         return view('pages.dashboard.myReceivers')->with('receivers', $receivers);
     }

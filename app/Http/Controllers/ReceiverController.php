@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 
 class ReceiverController extends Controller
 {
-    public function determineHelp(\App\Models\Receiver $receiver) {
+//    public function determineHelp(\App\Models\Receiver $receiver) {
+
+    public function determineHelp(Receiver $receiver) {
 //        $needs = json_decode($receiver->needs);
         $needs = $receiver->needs;
+        $invalid = $receiver->invalid;
         /*
          * Tricky hack to make it empty array if needs is null. This will make it work with @empty directive of @forelse
          */
@@ -18,7 +21,7 @@ class ReceiverController extends Controller
         if ($needs === NULL) {
             $needs = [];
         }
-        return view('pages.dashboard.needsHelp')->with('needs', $needs);
+        return view('pages.dashboard.needsHelp')->with('needs', $needs)->with('invalid', $invalid);
     }
 
     public function viewReceiverData(Receiver $receiver) {

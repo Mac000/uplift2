@@ -26,10 +26,10 @@ class Kernel extends ConsoleKernel
     {
 //         $schedule->command('inspire')
 //                  ->hourly();
-        $schedule->command('determine:needs')->twiceDaily(11, 23);
-        $schedule->command('determine:needs')->timezone('Asia/Karachi') ->dailyAt('13:05');
-        $schedule->command('determine:needs')->timezone('Asia/Karachi') ->dailyAt('13:30');
-        $schedule->command('determine:needs')->timezone('Asia/Karachi') ->dailyAt('18:00');
+//        $schedule->command('determine:needs')->twiceDaily(11, 23);
+        $schedule->command('determine:needs')->timezone('Asia/Karachi') ->dailyAt('6:00');
+        $schedule->command('determine:needs')->timezone('Asia/Karachi') ->dailyAt('14:00');
+        $schedule->command('determine:needs')->timezone('Asia/Karachi') ->dailyAt('15:12');
     }
     /**
      * Register the commands for the application.

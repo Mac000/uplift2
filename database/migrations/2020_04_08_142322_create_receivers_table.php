@@ -23,6 +23,7 @@ class CreateReceiversTable extends Migration
 
             $table->boolean('help');
             $table->boolean('checked');
+            $table->boolean('invalid');
             $table->json('needs')->nullable();
             $table->timestamps();
 //            $table->string('cnic', 500)->unique();

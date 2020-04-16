@@ -35,7 +35,10 @@
                 <li class="ml-4">Open up Google maps, access your position and copy paste the coordinates. Please provide coordinates of
                     your position at the address of Receiver.
                 </li>
-                <li class="ml-4">Provide comma separated list of goods. Please use "g" and "ml" for units. Example: Rice 5000g,flour 10000g</li>
+                <li class="ml-4">Provide comma separated list of goods. Please use "g" and "ml" for units. Example: Rice 5000g, flour 10000g</li>
+                <li class="ml-4">The syntax for goods list is:</li>
+                <li class="ml-4">item1 quantity1, item2 quantity2, item3 quantity 3</li>
+                <li class="ml-4">pay attention to comma after every item and quantity, and use of space immediately after comma.</li>
                 <li class="ml-4">If some item has two names, e.g: "RedChilli" then use the "PascalCase" for naming. Remember Space and commas has a special meaning.</li>
                 <li class="ml-4">The format and units for goods is important. Please don't violate it or the "Help needed" feature will not work properly</li>
                 <li class="ml-4">Finally, Provide the cost of supplies, maximum amount is 15000</li>
