@@ -39,6 +39,7 @@
                 <li class="ml-4">The syntax for goods list is:</li>
                 <li class="ml-4">item1 quantity1, item2 quantity2, item3 quantity 3</li>
                 <li class="ml-4">pay attention to comma after every item and quantity, and use of space immediately after comma.</li>
+                <li class="ml-4">If you want to create ration bag then SAME rules apply to that since the values in ration bag will be used as it is for "Goods"</li>
                 <li class="ml-4">If some item has two names, e.g: "RedChilli" then use the "PascalCase" for naming. Remember Space and commas has a special meaning.</li>
                 <li class="ml-4">The format and units for goods is important. Please don't violate it or the "Help needed" feature will not work properly</li>
                 <li class="ml-4">Finally, Provide the cost of supplies, maximum amount is 15000</li>

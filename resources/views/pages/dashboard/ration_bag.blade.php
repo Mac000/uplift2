@@ -25,7 +25,7 @@
         <div class="form-group row justify-content-center">
             <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                     <textarea class="form-control" id="ration"
-                              placeholder="item1 quantity1,item2 quantity2" name="rations" required></textarea>
+                              placeholder="item1 quantity1, item2 quantity2" name="rations" required></textarea>
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
             </div>
