@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0248df0d-2e69-42a7-83a1-04bc8914359e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form_existing.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form_existing.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/dashboard/ration_bag.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/dashboard/ration_bag.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/how_to_use.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/how_to_use.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/dashboard/needsHelp.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/dashboard/needsHelp.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,10 +29,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/how_to_use.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/pages/dashboard/needsHelp.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="70" column="29" lean-forward="true" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+            <state relative-caret-position="178">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
@@ -125,11 +123,11 @@
         <option value="$PROJECT_DIR$/resources/views/components/dashboard/bulma_alert_secondary.blade.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/DetermineNeeds.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/dashboard/needsHelp.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/components/dashboard/deserving_form_existing.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/dashboard/ration_bag.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/how_to_use.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/pages/dashboard/needsHelp.blade.php" />
       </list>
     </option>
   </component>
@@ -228,7 +226,7 @@
       <path value="$PROJECT_DIR$/vendor/laravel/telescope" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="21" />
     <option name="y" value="13" />
     <option name="width" value="1026" />
@@ -349,18 +347,18 @@
       <workItem from="1586851735556" duration="4715000" />
       <workItem from="1586856705997" duration="1169000" />
       <workItem from="1586926810937" duration="13056000" />
-      <workItem from="1587023017336" duration="8526000" />
+      <workItem from="1587023017336" duration="8670000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="297135000" />
+    <option name="totallyTimeSpent" value="297279000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27836612" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28290468" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -375,7 +373,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.22838499" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.22838499" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
