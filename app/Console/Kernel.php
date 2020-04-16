@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
 //        $schedule->command('determine:needs')->twiceDaily(11, 23);
         $schedule->command('determine:needs')->timezone('Asia/Karachi') ->dailyAt('6:00');
         $schedule->command('determine:needs')->timezone('Asia/Karachi') ->dailyAt('14:00');
-        $schedule->command('determine:needs')->timezone('Asia/Karachi') ->dailyAt('15:12');
+        $schedule->command('determine:needs')->timezone('Asia/Karachi') ->dailyAt('20:00');
     }
     /**
      * Register the commands for the application.

@@ -60,7 +60,7 @@
                 @component('components.bulma_warn')
                     @slot('message')
                         Thanks for checking in &#128522;
-                        Needs are updated twice a day. please check back at least 12hrs later.
+                        Needs are updated thrice a day at 6AM, 2PM, 8PM. please check back later.
                     @endslot
                 @endcomponent
             @endforelse
