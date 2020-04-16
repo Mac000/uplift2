@@ -40,7 +40,7 @@
                         <div class="tags has-addons w-100">
                             <span class="tag is-dark d-inline-block cs-w-70 p-2 cs-tag-font">{{ $key }}</span>
 
-                            @if( preg_replace('/[^0-9]/', '', $item) <= 5)
+                            @if( preg_replace('/[^0-9]/', '', $item) => 0 and <= 5)
                                 <span class="tag is-light cs-w-30 cs-tag-font">{{$item}}</span>
 
                             @elseif( preg_replace('/[^0-9]/', '', $item) >= 6 and $item <= 15)
