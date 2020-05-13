@@ -24,6 +24,7 @@ class CreateDeliveriesTable extends Migration
             //  Adding CNIC at the end to avoid issues in front end where view is generated on assumption of order of columns in table
             $table->string('image', 60);
             $table->unsignedTinyInteger('days');
+            $table->unsignedTinyInteger('members');
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('receiver_id')->references('id')->on('receivers');

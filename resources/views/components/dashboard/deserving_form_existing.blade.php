@@ -38,6 +38,14 @@
 
         <div class="form-group row justify-content-center">
             <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
+                <input type="text" class="form-control" id="members" placeholder="For how many members?" name="members" required max="20">
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <label class="mr-2" for="rations">Select RationBag</label>
                 <select id="rations" class="form-control" name="rations">
                     <option value="">Select your ration bag OR Provide goods list</option>

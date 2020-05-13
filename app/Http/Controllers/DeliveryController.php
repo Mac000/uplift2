@@ -27,11 +27,13 @@ class DeliveryController extends Controller
         }])->with(['receiver' => function ($query) {
            $query->select('id', 'name', 'phone_no', 'gps', 'address', 'tehsil');
         }])->where('user_id', Auth::id())->paginate(5);
+
         return view('pages.dashboard.deliveries')->with('deliveries', [$deliveries]);
     }
 
     public function newDeliveryForm() {
         $rationBag = Ration::where('user_id', Auth::id())->get();
+
         return view('pages.dashboard.register_delivery_new')->with('rationBags', $rationBag);
     }
 
@@ -42,7 +44,7 @@ class DeliveryController extends Controller
             'receiver' => 'required|string|max:40',
             'address' => 'required|string|max:100',
             'phone_no' => 'required|digits:11',
-            'gps' => 'required|string|max:30',
+            'gps' => 'nullable|string|max:30',
             'goods' => 'nullable|string|max:255',
             'rations' => 'nullable|string|max:255',
             'cost' => 'numeric|max:15000',
@@ -50,6 +52,7 @@ class DeliveryController extends Controller
             'evidence' => 'required|max:1024|mimes:jpeg,png',
             'tehsil' => 'required|string|max:40',
             'days' => 'required|numeric|max:30',
+            'members' => 'required|numeric|max:20',
         ]);
         //  Aborting if both rations and goods are empty/NULL
         if ($validated['goods'] === NULL && $validated['rations'] === NULL) {
@@ -78,13 +81,17 @@ class DeliveryController extends Controller
             abort(500, 'Receiver exists, Please use "Deliver to existing person" form');
         }
         if ($receiver === NULL) {
+            if ($validated['gps'] === NULL) {
+                $validated['gps'] = 'N/A';
+            }
             $receiver = Receiver::create([
                 'name' => $validated['receiver'],
                 'phone_no' => $validated['phone_no'],
                 'address' => $validated['address'],
                 'gps' => $validated['gps'],
                 'tehsil' => $validated['tehsil'],
-                'cnic' => Crypt::encryptString($validated['cnic']),
+//                'cnic' => Crypt::encryptString($validated['cnic']),
+                'cnic' => $validated['cnic'],
             ]);
         }
 
@@ -95,6 +102,7 @@ class DeliveryController extends Controller
             'cost'     => $validated['cost'],
             'image' => $asset_path,
             'days' => $validated['days'],
+            'members' => $validated['members'],
         ]);
 
         $created = (bool)$delivery;
@@ -125,7 +133,6 @@ class DeliveryController extends Controller
     }
 
     public function existingDelivery(Request $request) {
-//        dd($request);
 
         $validated = $request->validate([
             'receiver' => 'required|string|max:40',
@@ -135,6 +142,7 @@ class DeliveryController extends Controller
             'cost' => 'numeric|max:15000',
             'evidence' => 'required|max:1024|mimes:jpeg,png',
             'days' => 'required|numeric|max:30',
+            'members' => 'required|numeric|max:20',
         ]);
     //  Aborting if both rations and goods are empty/NULL
         if ($validated['goods'] === NULL && $validated['rations'] === NULL) {
@@ -164,6 +172,7 @@ class DeliveryController extends Controller
             'cost'     => $validated['cost'],
             'image' => $asset_path,
             'days' => $validated['days'],
+            'members' => $validated['members'],
         ]);
 
         $created = (bool)$delivery;

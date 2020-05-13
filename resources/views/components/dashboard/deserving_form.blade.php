@@ -57,7 +57,7 @@
 
         <div class="form-group row justify-content-center">
             <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
-                <input type="text" class="form-control" id="gps" placeholder="GPS coordinates" name="gps" required>
+                <input type="text" class="form-control" id="gps" placeholder="GPS coordinates" name="gps">
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
             </div>
@@ -66,6 +66,14 @@
         <div class="form-group row justify-content-center">
             <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
                 <input type="text" class="form-control" id="days" placeholder="For how many days?" name="days" required max="30">
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-sm ml-1 mr-1 ml-md-4 mr-md-4">
+                <input type="text" class="form-control" id="members" placeholder="For how many members?" name="members" required max="20">
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Receiver;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class DetermineNeeds extends Command
@@ -32,10 +33,11 @@ class DetermineNeeds extends Command
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
+     * This command now deals with Precisely determining if someone needs new supplies,
+     * If Someone does not need help, it sets the proper attributes,
+     * If Someone needs help, it sets the proper attributes
      */
+
     public function handle()
     {
         $receiver_collection = Receiver::with(['latestDelivery'])->where([
@@ -48,7 +50,24 @@ class DetermineNeeds extends Command
                     if ($receiver->latestDelivery !== NULL) {
                         $delivery = $receiver->latestDelivery;
                         $days = $delivery->days;
+                        $members = $delivery->members;
                         $items_json = $delivery->goods;
+
+                        // New code
+                        $today = Carbon::now();
+                        $today = $today->day;
+                        $delivery_date = $delivery->created_at;
+                        $delivery_date = Carbon::parse($delivery_date)->day;
+
+                        // If $needs_delivery >= 1, Receiver has run out of supplies
+
+                        $needs_delivery = $today - ($delivery_date+$days);
+                        if ($needs_delivery >= 1) {
+                            $receiver->checked = true;
+                            $receiver->help = true;
+                            $receiver->save();
+                            return;
+                        }
 
                         $items_json_array = explode(",", $items_json);
                         //  This is to determine if provided goods list was valid or not
@@ -116,7 +135,7 @@ class DetermineNeeds extends Command
                                     // Get the quantity of Essential item by removing any non-numeric character
                                     $essential_item = preg_replace('/[^0-9]/', '', $essential_item);
                                     //  Multiplying essential quantity to determine needed supplies for a given family and for given days
-                                    $essential_item = ($essential_item * $days);
+                                    $essential_item = ($essential_item * $days * $members);
 
                                     if ($combined_item < $essential_item) {
                                         //  Divide by 1000 since all units we have are "g" and "ml"
@@ -128,11 +147,18 @@ class DetermineNeeds extends Command
                                 }
                                 $i++;
                             }
-                            $receiver->checked = true;
-                            if (!$needs->isEmpty()) {
-                                $receiver->help = true;
-                                $receiver->needs = $needs;
+                            // If the $needs is empty then set the Receiver attributes to show Help is not needed
+
+                            if ($needs->isEmpty()) {
+                                $receiver->help = false;
+                                $receiver->needs = NULL;
+                                $receiver->save();
                             }
+                            // $needs is not empty then set the attributes
+
+                            $receiver->checked = true;
+                            $receiver->help = true;
+                            $receiver->needs = $needs;
                             $receiver->save();
                         }
                         else {

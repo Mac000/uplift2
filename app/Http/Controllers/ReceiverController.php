@@ -14,6 +14,8 @@ class ReceiverController extends Controller
 //        $needs = json_decode($receiver->needs);
         $needs = $receiver->needs;
         $invalid = $receiver->invalid;
+        $help = $receiver->help;
+        $latest_delivery = $receiver->latestDelivery;
         /*
          * Tricky hack to make it empty array if needs is null. This will make it work with @empty directive of @forelse
          */
@@ -21,7 +23,8 @@ class ReceiverController extends Controller
         if ($needs === NULL) {
             $needs = [];
         }
-        return view('pages.dashboard.needsHelp')->with('needs', $needs)->with('invalid', $invalid);
+        return view('pages.dashboard.needsHelp')->with('needs', $needs)->with('invalid', $invalid)
+            ->with('help', $help)->with('latest_delivery', $latest_delivery);
     }
 
     public function viewReceiverData(Receiver $receiver) {

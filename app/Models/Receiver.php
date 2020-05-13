@@ -14,7 +14,7 @@ class Receiver extends Model
     ];
 
     protected $attributes = [
-      'help' => false, 'checked' => false, 'needs' => null, 'invalid' => false,
+      'help' => false, 'checked' => false, 'needs' => null, 'invalid' => false, 'gps' => 'N/A',
     ];
     protected $hidden = [
         'cnic',
