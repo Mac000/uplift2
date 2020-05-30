@@ -16,3 +16,4 @@ type ``composer global require laravel/installer`` in command line.
 10. If you choose to set your own env, then I recommend seeting up mailtrap and adding the mailtrap credentiaals into env file. Choose laravel from "Mailtrap integration" and copy paste the env variable into .env file.
 11. Lastly, replace the ``QUEUE_CONNECTION`` with ``QUEUE_CONNECTION=database`` inside your env file.
 type ``php artisan serve`` to run the project.
+For anymore info, visit Laravel docs at https://laravel.com/docs/6.x
