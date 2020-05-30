@@ -1,6 +1,6 @@
 # uplift
  Uplift is a responsive web to assist volunteers for relief of Covid-19
-
+# Note: Please use VUDSC branch
 # Instructions for Running Product
 1. Install composer. You can donwload .exe from https://getcomposer.org/
 OR
